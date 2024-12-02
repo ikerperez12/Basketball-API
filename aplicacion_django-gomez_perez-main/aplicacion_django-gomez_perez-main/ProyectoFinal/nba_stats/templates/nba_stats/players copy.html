@@ -1,0 +1,92 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<style>
+        .container p {
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+    .container h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+          display: flex;
+          margin-left: 10px;
+        }
+
+        .table-container {
+                    margin-right: 10px;
+                }
+
+        .container table {
+            border-collapse: collapse;
+            width: 300px;
+            margin-right: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: #0c0000;
+        }
+
+        .container th {
+            background-color: #0a0000;
+            padding: 10px;
+        }
+
+        .container td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ec0909;
+        }
+      
+</style>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Player Stats</title>
+  </head>
+  <body>
+    <h1>Player Stats</h1>
+    {% if request.method == 'GET' %}
+    <form action="/players/" method="post">
+      {% csrf_token%}
+      <label for="player_name">Player Name: </label>
+      <input id="player_name" type="text" name="player_name" value="{{ player_name }}">
+      <input type="submit" value="OK">
+  </form>
+
+  {% else %}
+  <p>Hemos obtenido del api el jugador: {{player.0.player.firstname}} {{player.0.player.lastname}} </p>
+  <img src="{{imagen}}" alt="Descripción de la imagen">
+  <div class="container">
+    
+    <div class="table-container">
+    {{tabla | safe}}
+    </div>
+    
+  </div>
+
+  <div class="container">
+    
+    <div class="table-container">
+    {{tabla_medias | safe}}
+    </div>
+    
+  </div>
+  <img src="data:image/png;base64,{{ grafica }}" alt="Gráfica de Puntos">
+
+  {% endif %}
+  </body>
+</html>
+{% endblock %}

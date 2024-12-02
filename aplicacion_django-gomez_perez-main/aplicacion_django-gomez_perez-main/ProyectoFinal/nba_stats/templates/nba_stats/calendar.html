@@ -1,0 +1,20 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendario Generado</title>
+</head>
+<body>
+{% if diccionario_de_links%}
+    {% for links in diccionario_de_links.lista_de_links.0%}
+        <p>{{link}}</p>
+    {% endfor%}
+{% endif%}
+</body>
+</html>
+{% endblock %}

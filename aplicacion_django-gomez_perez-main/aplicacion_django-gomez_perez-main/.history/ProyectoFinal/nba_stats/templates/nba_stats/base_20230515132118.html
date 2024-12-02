@@ -1,0 +1,107 @@
+<html>
+
+<head>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static 'nba_stats/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+     <!-- Fonts -->
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     
+
+    <!-- Styles -->
+    <link href="{% static 'nba_stats//css/gestion.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      
+        <span class="site-heading-lower">Welcome to Stats_NBA</span>
+      </h1>
+
+    <div style="text-align: right; margin-right: 100px;color:white;">
+        {% if user.is_authenticated %}
+        Autenticado
+        {% else %}
+        No autenticado
+        {% endif %}
+    </div>
+
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'nba_stats:home' %}">Stats_NBA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item {% if 'home' in request.path %} active {% endif %}px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'nba_stats:home' %}">Home</a>
+          </li>
+          <li class="nav-item {% if 'players' in request.path %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'nba_stats:players' %}">Players</a>
+          </li>
+          <li class="nav-item {% if 'teams' in request.path %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'nba_stats:teams' %}">Teams</a>
+          </li>
+          <li class="nav-item {% if 'ranking' in request.path %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'nba_stats:ranking' %}">Ranking</a>
+            <li class="nav-item {% if 'busquedaequipo' in request.path %} active {% endif %} px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'nba_stats:busquedaequipo' %}">Busqueda Equipo</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Contenido cambiante-->
+{% block content %}
+
+
+{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="sample.html" class="link">Política de privacidad</a> ·
+        	<a href="sample.html" class="link">Aviso legal</a> ·
+        	<a href="sample.html" class="link">Cookies</a>
+		</p>
+        <p class="m-0 mbt1">&copy; NBA_STATS 2023</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'nba_stats/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'nba_stats/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>

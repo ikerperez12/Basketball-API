@@ -1,0 +1,15 @@
+<!-- calendar.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendario Generado</title>
+</head>
+<body>
+    <h1>Calendario Generado</h1>
+    <p>Enlace para importar el calendario: <a href="{{ calendar_link }}">{{ calendar_link }}</a></p>
+    <h2>Eventos Creados:</h2>
+    {% for event_link in event_links %}
+        <p>Evento creado: <a href="{{ event_link }}">{{ event_link }}</a></p>
+    {% endfor %}
+</body>
+</html>

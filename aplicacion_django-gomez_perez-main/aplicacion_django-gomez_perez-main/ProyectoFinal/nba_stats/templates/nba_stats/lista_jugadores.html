@@ -1,0 +1,34 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de jugadores</title>
+  </head>
+  <body>
+    <h1>Lista de jugadores</h1>
+
+    <form action="/lista_jugadores/" method="post">
+      {% csrf_token%}
+      <label for="player_name">Player Name: </label>
+      <input id="player_name" type="text" name="player_name" value="{{ player_name }}">
+      <input type="submit" value="OK">
+  </form>
+    {%  if players %}
+        {% for player in players%}
+          {% if player.nba.start %}
+            <ul><a href="{% url 'nba_stats:player_detail' player_id=player.id %}">{{player.firstname}} {{player.lastname}}</a></ul>
+          {% else %}
+            <ul>{{player.firstname}} {{player.lastname}} : Sin informacion </ul>
+          {% endif %}
+        {% endfor %}
+    {% else %}
+    <p>Lo siento, no hemos encontrado al jugador, asegurate de que su nombre sea correcto</p>
+    {% endif %}
+  </body>
+</html>
+{% endblock %}

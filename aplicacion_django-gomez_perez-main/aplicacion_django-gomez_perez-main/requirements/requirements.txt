@@ -1,0 +1,19 @@
+Django==3.2
+pandas
+requests==2.22.0
+jsonfield==3.1.0
+jsonschema==3.2.0
+certifi==2021.5.30
+python-dateutil==2.8.1
+seaborn==0.11.1
+django-crispy-forms
+crispy_bootstrap4
+bootstrap4
+google-api-python-client
+google-auth
+google-auth-oauthlib
+matplotlib
+
+#algunas aun no las he  utilizado para puede ser necesario.
+#revisar versionesssssssss
+#actualizateee

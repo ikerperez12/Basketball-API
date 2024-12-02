@@ -1,0 +1,38 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teams</title>
+  </head>
+  <body>
+    <h1>Teams</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Nickname</th>
+          <th>CITY</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in teams %}
+        <tr>
+          <td>{{ team.id }}</td>
+          <td>{{ team.name }}</td>
+          <td>{{ team.nickname }}</td>
+          <td>{{ team.city }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
+{% endblock %}
+
+    

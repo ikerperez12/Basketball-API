@@ -1,0 +1,136 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  .contenedor_estadisticas {
+    display: flex;
+    justify-content: safe;
+  }
+
+  .stats1 {
+    margin-left: 10px;
+  }
+
+  .stats2 {
+    margin-left: 10px;
+  }
+  .hidden {
+  display: none;
+        }
+  .graficas .grafica1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .graficas .grafica2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  img{
+    margin: 20px;;
+    
+  }       
+  
+
+</style>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Player Stats</title>
+  </head>
+  <body>
+   {% if lista_jugadores %} 
+    <h1>Player Stats</h1>
+    <form action="/players/" method="post">
+      {% csrf_token%}
+      <label for="player_name">Añadir jugador a la comparacion: </label>
+      <input id="player_name" type="text" name="player_name" value="{{ player_name }}">
+      <input type="submit" value="OK">
+  </form>
+  {% else %}
+  <h1>Player Stats</h1>
+  <form action="/players/" method="post">
+    {% csrf_token%}
+    <label for="player_name">Nombre de jugad: </label>
+    <input id="player_name" type="text" name="player_name" value="{{ player_name }}">
+    <input type="submit" value="OK">
+</form>
+  {% endif %}
+
+
+
+
+
+
+  {% if lista_jugadores.0%}
+  <button id="toggle-btn" onclick="toggleDiv()">Mostrar u Ocultar Estadisticas por partido</button>
+  <div class="contenedor_estadisticas">
+      <div class="stats1">
+        <img src="data:image/jpeg;base64,{{ lista_jugadores.0.imagen }}" alt="Imagen redimensionada">
+        {{lista_jugadores.0.tabla_medias|safe}}
+
+        <div class="tabla_stats hidden">
+          {{lista_jugadores.0.tabla_estadisticas|safe}}
+        </div>
+      </div>
+    
+  {% if lista_jugadores.1 %}
+      <div class="stats2">
+      <img src="data:image/jpeg;base64,{{ lista_jugadores.1.imagen }}" alt="Imagen redimensionada">
+        {{lista_jugadores.1.tabla_medias|safe}}
+        <div class="tabla_stats hidden">
+        {{lista_jugadores.1.tabla_estadisticas|safe}}
+        </div>
+      
+      </div>
+      {% endif %}
+
+  </div>
+    
+  {% endif %}
+  {%if grafica_medias%}
+
+  <button id="toggle-btn2" onclick="toggleDiv2()">Mostrar u Ocultar Graficas</button>
+  <div class="graficas hidden">
+    <div class="grafica1">
+      <img src="data:image/png;base64,{{ grafica_medias }}" alt="Gráfica de Puntos">
+    </div>
+    <div>
+  <img src="data:image/png;base64,{{ grafica_estadisticas }}" alt="Gráfica de Estadisticas">
+  </div class="grafica2">
+
+  </div>
+  {% endif %}
+  <script>
+    function toggleDiv() {
+        var myDivs = document.getElementsByClassName('tabla_stats');
+        for (var i = 0; i < myDivs.length; i++) {
+            if (myDivs[i].classList.contains('hidden')) {
+                myDivs[i].classList.remove('hidden');
+            } else {
+                myDivs[i].classList.add('hidden');
+            }
+        }
+    }
+
+    function toggleDiv2() {
+        var myDivs = document.getElementsByClassName('graficas');
+        for (var i = 0; i < myDivs.length; i++) {
+            if (myDivs[i].classList.contains('hidden')) {
+                myDivs[i].classList.remove('hidden');
+            } else {
+                myDivs[i].classList.add('hidden');
+            }
+        }
+    }
+</script>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "nba_stats/base.html" %}
+{% load static %}
+{% block content %}
+{% load custom_tags %}
+<style>
+    .player-container {
+      display: flex;
+    }
+
+    .player-image {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+    }
+
+    .player-info {
+      margin-bottom: 20px;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .stats-table th,
+    .stats-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .stats-table th {
+      background-color: #f2f2f2;
+    }
+
+    .generate-button {
+      padding: 10px 20px;
+      background-color: #ce3913;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .generate-button:hover {
+      background-color: #eb1708;
+    }
+
+    .tablas{
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <form action="/pruebas/" method="post">
+    {% csrf_token%}
+    <label for="player_name">Player Name: </label>
+    <input id="player_name" type="text" name="player_name" value="{{ player_name }}">
+    <input type="submit" value="OK">
+</form>
+{{lista_estadisticas|length}}
+
+{% if tabla1 %}
+<div class="tablas">
+  <div>
+{{tabla1|safe}}
+  </div>
+  <div>
+  {% if tabla2 %}
+    {{tabla2|safe}}
+  {% endif %}
+</div>
+{% endif %}
+</div>
+
+  <div class="player-container">
+    <img src="{% static 'nba_stats/img/lebron.png' %}" alt="Imagen del jugador" class="player-image">
+    <div class="player-info">
+      <h2>Nombre del Jugador</h2>
+      <p>Edad: 25</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <p>Peso: 75 kg</p>
+      <!-- Otros campos de información del jugador -->
+    </div>
+  </div>
+
+  <h1>DataFrame</h1>
+  <table>
+      <thead>
+          <tr>
+              {% for column in dataframe.columns %}
+                  <th>{{ column }}</th>
+              {% endfor %}
+          </tr>
+      </thead>
+      <tbody>
+          {% for index, row in dataframe.iterrows %}
+              <tr>
+                  {% for cell in row %}
+                      <td>{{ cell }}</td>
+                  {% endfor %}
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+  <button class="generate-button">Generar Gráficas</button>
+</body>
+{% endblock %}

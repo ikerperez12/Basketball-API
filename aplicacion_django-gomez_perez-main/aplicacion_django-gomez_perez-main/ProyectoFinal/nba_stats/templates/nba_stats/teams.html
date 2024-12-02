@@ -1,0 +1,50 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  .imagen {
+    width: 30px;
+    height: 30px;
+  }
+</style>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teams</title>
+  </head>
+  <body>
+    <h1>Teams</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Nickname</th>
+          <th>CITY</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in teams %}
+          {% if team.nbaFranchise%}
+            {% if team.id != 37 %}
+            <tr>
+              <td>{{ team.id }}</td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.nickname }}</td>
+              <td>{{ team.city }}</td>
+              <td><img class="imagen" src="{{team.logo}}" alt="{{team.id}}.png"></td>
+            </tr>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
+{% endblock %}
+
+    

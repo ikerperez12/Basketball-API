@@ -1,0 +1,22 @@
+<!-- searchteamsseasons.html -->
+{% extends "nba_stats/base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Calendario</title>
+</head>
+<body>
+    <h1>Buscar Calendario</h1>
+    <form method="post" action="{% url 'nba_stats:generate_calendar' %}">
+        {% csrf_token %}
+        <label for="team_id">ID del Equipo:</label>
+        <input type="text" id="team_id" name="team_id" required><br><br>
+        <label for="season">Temporada:</label>
+        <input type="text" id="season" name="season" required><br><br>
+        <input type="submit" value="Generar Calendario">
+    </form>
+</body>
+</html>
+{% endblock %}

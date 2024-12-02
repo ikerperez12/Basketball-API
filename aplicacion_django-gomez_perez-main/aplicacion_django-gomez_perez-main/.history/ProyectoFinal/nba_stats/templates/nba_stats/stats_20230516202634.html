@@ -1,0 +1,38 @@
+{% extends "nba_stats/base.html" %}
+
+{% block content %}
+  <h2>Estadísticas de los jugadores</h2>
+
+  <!-- Desplegable para seleccionar el número de partidos -->
+  <label for="gameSelect">Selecciona el número de partidos a mostrar:</label>
+  <select id="gameSelect" onchange="window.location.href=this.value;">
+    <option value="">-- Por favor elige --</option>
+    <option value="?games=1">1</option>
+    <option value="?games=2">2</option>
+    <option value="?games=3">3</option>
+    <option value="?games=4">4</option>
+    <!-- Puedes agregar más opciones aquí -->
+  </select>
+
+  <!-- Tabla para mostrar las estadísticas de los jugadores -->
+  <table>
+    <tr>
+      <th>Nombre del Jugador</th>
+      <th>Equipo</th>
+      <th>Puntos</th>
+      <th>Posición</th>
+      <th>Minutos</th>
+      <!-- Puedes agregar más columnas aquí para mostrar más estadísticas -->
+    </tr>
+    {% for player in players %}
+      <tr>
+        <td>{{ player.player_firstname }} {{ player.player_lastname }}</td>
+        <td>{{ player.team_name }}</td>
+        <td>{{ player.points }}</td>
+        <td>{{ player.pos }}</td>
+        <td>{{ player.min }}</td>
+        <!-- Agrega más celdas aquí para mostrar más estadísticas -->
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

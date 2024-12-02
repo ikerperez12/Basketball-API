@@ -1,0 +1,61 @@
+{% extends "nba_stats/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  .container {
+  display: flex;
+  margin-left: 10px;
+}
+
+.table-container {
+            margin-right: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin-right: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: #0c0000;
+        }
+
+        th {
+            background-color: #0a0000;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ec0909;
+        }        
+</style>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teams</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="table-container">
+        <h1>General:</h1>
+          {{ranking_general | safe}}
+      </div>
+      <div class="table-container"> 
+      <h1>Teams:EAST</h1>
+        {{rank_east | safe}}
+      </div>
+      
+      <div class="table-container">
+      <h1>Teams:West</h1>
+        {{rank_west | safe}}
+      </div>  
+    </div>  
+  </body>
+</html>
+{% endblock %}

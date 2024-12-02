@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./ProyectoFinal/NBA _API"
+    ]
+}

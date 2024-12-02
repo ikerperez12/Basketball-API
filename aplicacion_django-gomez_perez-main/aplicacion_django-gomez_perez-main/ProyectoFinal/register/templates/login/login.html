@@ -1,0 +1,24 @@
+{% extends "nba_stats/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+.text-muted {
+  color: white !important;
+}
+
+
+
+</style>
+
+    <form action="" method="post" style="color: white;";>
+        {% csrf_token%}
+        <div style="width: 50%; margin: auto;">
+        {{form|crispy}}
+        <!-- <button type="submit"  class="btn btn-success">Register</button> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </div>
+    </form>  
+
+
+{% endblock%}
